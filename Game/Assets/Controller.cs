@@ -3,8 +3,7 @@ using System.Collections;
 
 public class Controller : MonoBehaviour
 {
-
-
+	
     public float speed = 10.0f;
     float distToGround;
     public int characterNumber = 0;
@@ -21,12 +20,18 @@ public class Controller : MonoBehaviour
     float hAimMod = 1.0f;
     float vAimMod = 1.0f;
 
+	public GameObject aiming;
+
+	GameObject activeAiming;
+
     // Use this for initialization
     void Start()
     {
         distToGround = collider.bounds.extents.y;
 
-       setupController();
+       	setupController();
+		activeAiming = (GameObject)Instantiate (aiming, new Vector3(-1000, -1000, -1000), transform.rotation);
+		activeAiming.renderer.material = renderer.material;
     }
     
     void setupController()
@@ -126,7 +131,6 @@ public class Controller : MonoBehaviour
             fired = true;
             Debug.Log("Player Fire " + characterNumber);
             ((Projectile)(GetComponent("Projectile"))).Fire(aim);
-
         }
 
         if (trigger <= 0.5)
@@ -134,7 +138,15 @@ public class Controller : MonoBehaviour
             fired = false;
         }
 
-        if (!isJumping && (Input.GetButton(jumpbutton) || Input.GetAxis(vmove) > 0.5))
+		if (aim.sqrMagnitude > 0.2f) {
+						activeAiming.transform.position = transform.position + new Vector3 (aim.normalized.x, aim.normalized.y, 0) * 0.7f;
+				
+				} else {
+			activeAiming.transform.position = new Vector3(-1000, -1000, -1000);
+			
+				}
+
+        if (!isJumping && ( Input.GetAxis(vmove) > 0.5))
         {
             ///Debug.Log(characterNumber);
             isJumping = true;

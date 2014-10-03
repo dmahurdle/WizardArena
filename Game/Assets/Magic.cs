@@ -31,8 +31,8 @@ public class Magic : MonoBehaviour {
 			else
 			{
 				GameManager.getPlayer(characterNumber).alterNumKills(1);
+				guy.Kill();
 			}
-			guy.Kill();
 			
 		}
 		Destroy (this.gameObject);

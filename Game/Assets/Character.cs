@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Character : MonoBehaviour 
 {
-	public GameObject characterModel;
 	private Controller controller;
 	private int numKills, playerId;
 	private bool invincible;
@@ -41,7 +40,6 @@ public class Character : MonoBehaviour
 		float y = (Random.value * 10) - 5;
 		float z = (Random.value * 10) - 5;
 		((Projectile)this.gameObject.GetComponent("Projectile")).bullet.characterNumber = playerId;
-		GameObject character = (GameObject)Instantiate(characterModel, new Vector3(x, y, z), Quaternion.identity);
 	}
 	
 	public int getId()
