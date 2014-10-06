@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour {
 		counterStyle = new GUIStyle();
 		winStyle = new GUIStyle();
 		timerStyle.fontSize = 25;
-		counterStyle.fontSize = 35;
+		counterStyle.fontSize = 45;
 		winStyle.fontSize = 25;
 		timerStyle.normal.textColor = Color.white;
 		counterStyle.normal.textColor = Color.red;
@@ -95,9 +95,9 @@ public class GameManager : MonoBehaviour {
 		int height = 40;
 		if(players.Length > 0)
 		{
-			counterStyle.normal.textColor = GameManager.getPlayer(0).renderer.material.color;
-			int numKills = GameManager.getPlayer(0).getNumKills();
-			GUI.TextField(new Rect(0,height,width,height), ""+numKills, counterStyle);
+		counterStyle.normal.textColor = GameManager.getPlayer(0).renderer.material.color;
+		int numKills = GameManager.getPlayer(0).getNumKills();
+		GUI.TextField(new Rect(0,height,width,height), ""+numKills, counterStyle);
 			if(players.Length > 1)
 			{
 				counterStyle.normal.textColor = GameManager.getPlayer(1).renderer.material.color;
